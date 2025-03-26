@@ -11,7 +11,6 @@ defineEmits(['change_filter'])
       value=""
       name="filter"
       @input="$emit('change_filter', $event.target.value)"
-      v-model="filterValue"
     />
   </div>
 </template>

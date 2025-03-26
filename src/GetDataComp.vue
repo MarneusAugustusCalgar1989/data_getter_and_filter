@@ -31,8 +31,6 @@ import FilterComp from './components/FilterComp.vue'
 
 const url = 'https://jsonplaceholder.typicode.com/posts'
 // Это урл на эндпоинт, который должен у себя что-то искать
-const urlForFiltererdRequests = 'http://какой-то-урл-который-отдает-данные'
-// Заходим на "боевой" сервер, который отдает нам все необходимое
 const fetchData = async (url) => {
   const response = await fetch(url)
   if (response.ok) {
@@ -45,10 +43,10 @@ const fetchData = async (url) => {
 // Вызываем это, когда хотим получить фильтрованное
 
 const sendFilterData = async (value) => {
+  console.log(value)
   try {
-    const response = await fetch(urlForFiltererdRequests, { method: 'GET', body: value })
+    const response = await fetch(url + '?title_like=^' + value)
     response.json().then((data) => (postsList.value = data))
-    throw new Error('Кажется не работает бэк')
   } catch (e) {
     console.error(e)
     postsList.value = 0
